@@ -22,6 +22,7 @@ module.exports = function() {
     require("../app/routes/customer.server.routes.js")(app);
     require("../app/routes/question.server.routes.js")(app);
     require("../app/routes/account.server.routes.js")(app);
+    require("../app/routes/beacon.server.routes.js")(app);
     
     return app;
 };

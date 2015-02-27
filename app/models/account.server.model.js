@@ -16,20 +16,23 @@ var _rate = 4.2;
 
 exports.createAccount = function(req, res) {
     Account.findOne({ customer_id: req.param('customer_id'), name: req.param('name') }, function(error, account) {
-	if (!account) {
-	    console.log("Creating account");
-	    account = new Account({
-		customer_id:	req.param('customer_id'),
-		name:		req.param('name'),
-		ceiling:	_ceiling,
-		overdraft:	_overdraft,
-		rate:		_rate,
-		updated_at:	Date.now()
-	    }).save( function( err, acc, count ){
-		res.end(acc.toString());
-	    });
-	} else {
-	    res.end(account.toString());
-	}
-    });
+	    res.writeHead(200, {
+		    'Content-Type': 'application/json; charset=utf-8'
+		});
+	    if (!account) {
+		console.log("Creating account");
+		account = new Account({
+			customer_id:	req.param('customer_id'),
+			name:		req.param('name'),
+			ceiling:	_ceiling,
+			overdraft:	_overdraft,
+			rate:		_rate,
+			updated_at:	Date.now()
+		    }).save( function( err, acc, count ){
+			    res.end(JSON.stringify(acc));
+			});
+	    } else {
+		res.end(JSON.stringify(account));
+	    }
+	});
 };

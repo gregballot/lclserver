@@ -8,5 +8,5 @@
 module.exports = function(app) {
     var accountModel = require('../models/account.server.model');
 
-    app.post('/account/create', accountModel.createAccount);
+    app.get('/account/create', accountModel.createAccount);
 };
