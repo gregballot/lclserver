@@ -1,1 +1,1 @@
-Just a simple app to test Express
+Server LCL Smart Beacon
